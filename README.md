@@ -2,28 +2,51 @@
 подключение к бд
 
 #############
+
+
 internal class DbCarRepairWorkshop 
+
 {
+
     public static NpgsqlConnection GetConnection() 
+    
     {
+    
         string connString = "Host=localhost;Port=5432;Username=postgres;Password=ваш_пароль;Database=car_repair_workshop";
+        
         var conn = new NpgsqlConnection(connString);
+        
         try{
+        
           conn.Open();
+          
         }
+        
         catch(NpgsqlException ex){
+        
           MessageBox.Show("MySQL Connection" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          
         }
+        
         return conn;
+        
     }
+    
 }
+
 ####################
 главная с карточками
+
 public partial class Form2 : Form {
+
     public Form2() {
+    
         InitializeComponent();
+        
         LoadMalfunctions();
+        
     }
+    
         private void AddMalfunctionsCard(int id, string name, decimal cost) {
             Panel malfunctionsPanel = new Panel {
                 BorderStyle = BorderStyle.FixedSingle,
@@ -31,7 +54,7 @@ public partial class Form2 : Form {
                 Margin = new Padding(10),
                 Tag = id
             };
-
+            
             Label lblName = new Label {
                 Text = name,
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
